@@ -8,12 +8,12 @@
             <field name="arch" type="xml">
                 <xpath expr="//page[@name='invoicing']//group[@name='accounting']" position="inside">
                     <group name="kra_oscu" string="KRA eTIMS Details" invisible="'KE' not in fiscal_country_codes or (product_variant_count &gt; 1 and not is_product_variant)">
-                        <field name="oscu_l10n_ke_packaging_unit_id" readonly="oscu_l10n_ke_item_code"/>
-                        <field name="oscu_l10n_ke_packaging_quantity"/>
-                        <field name="oscu_l10n_ke_origin_country_id" readonly="oscu_l10n_ke_item_code"/>
-                        <field name="oscu_l10n_ke_product_type_code" readonly="oscu_l10n_ke_item_code"/>
-                        <field name="oscu_l10n_ke_is_insurance_applicable"/>
-                        <field name="oscu_l10n_ke_item_code"/>
+                        <field name="l10n_ke_packaging_unit_id" readonly="l10n_ke_item_code"/>
+                        <field name="l10n_ke_packaging_quantity"/>
+                        <field name="l10n_ke_origin_country_id" readonly="l10n_ke_item_code"/>
+                        <field name="l10n_ke_product_type_code" readonly="l10n_ke_item_code"/>
+                        <field name="l10n_ke_is_insurance_applicable"/>
+                        <field name="l10n_ke_item_code"/>
                         <field name="l10n_ke_remark" placeholder="e.g., Disbursement"/>
                         <div class="cell"/>
                         <button name="action_l10n_ke_oscu_save_item" string="Save Item"
@@ -30,12 +30,12 @@
                 <xpath expr="//sheet" position="inside">
                     <field name="fiscal_country_codes" invisible="1"/>
                     <group name="kra_oscu" string="KRA eTIMS Details" invisible="'KE' not in fiscal_country_codes">
-                        <field name="oscu_l10n_ke_packaging_unit_id" readonly="oscu_l10n_ke_item_code"/>
-                        <field name="oscu_l10n_ke_packaging_quantity"/>
-                        <field name="oscu_l10n_ke_origin_country_id" readonly="oscu_l10n_ke_item_code"/>
-                        <field name="oscu_l10n_ke_product_type_code" readonly="oscu_l10n_ke_item_code"/>
-                        <field name="oscu_l10n_ke_is_insurance_applicable"/>
-                        <field name="oscu_l10n_ke_item_code"/>
+                        <field name="l10n_ke_packaging_unit_id" readonly="l10n_ke_item_code"/>
+                        <field name="l10n_ke_packaging_quantity"/>
+                        <field name="l10n_ke_origin_country_id" readonly="l10n_ke_item_code"/>
+                        <field name="l10n_ke_product_type_code" readonly="l10n_ke_item_code"/>
+                        <field name="l10n_ke_is_insurance_applicable"/>
+                        <field name="l10n_ke_item_code"/>
                         <div class="cell"/>
                         <button name="action_l10n_ke_oscu_save_item" string="Save Item"
                                 type="object" groups="base.group_no_one"/>
@@ -53,12 +53,12 @@
                     <field name="display_name"/>
                     <field name="standard_price"/>
                     <field name="taxes_id" widget="many2many_tags"/>
-                    <field name="oscu_l10n_ke_packaging_unit_id" readonly="oscu_l10n_ke_item_code"/>
-                    <field name="oscu_l10n_ke_packaging_quantity"/>
-                    <field name="oscu_l10n_ke_origin_country_id" readonly="oscu_l10n_ke_item_code"/>
-                    <field name="oscu_l10n_ke_product_type_code" optional="show"/>
+                    <field name="l10n_ke_packaging_unit_id" readonly="l10n_ke_item_code"/>
+                    <field name="l10n_ke_packaging_quantity"/>
+                    <field name="l10n_ke_origin_country_id" readonly="l10n_ke_item_code"/>
+                    <field name="l10n_ke_product_type_code" optional="show"/>
                     <field name="unspsc_code_id"/>
-                    <field name="oscu_l10n_ke_item_code" optional="hide"/>
+                    <field name="l10n_ke_item_code" optional="hide"/>
                 </list>
             </field>
         </record>
@@ -68,7 +68,7 @@
             <field name="inherit_id" ref="product.product_template_tree_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='barcode']" position="after">
-                    <field name="oscu_l10n_ke_item_code" optional="hide"/>
+                    <field name="l10n_ke_item_code" optional="hide"/>
                 </xpath>
             </field>
         </record>
@@ -78,7 +78,7 @@
             <field name="inherit_id" ref="product.product_template_search_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='name']" position="after">
-                    <field name="oscu_l10n_ke_item_code"/>
+                    <field name="l10n_ke_item_code"/>
                 </xpath>
             </field>
         </record>

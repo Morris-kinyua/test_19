@@ -61,7 +61,7 @@ class TestKeEdiCommon(TestAccountMoveSendCommon):
             'unspsc_code_id': cls.env['product.unspsc.code'].search([
                 ('code', '=', '81121500'),
             ], limit=1).id,
-            'oscu_l10n_ke_packaging_unit_id': cls.env.ref('l10n_ke_etims_vscu.code_17_OU').id,
+            'l10n_ke_packaging_unit_id': cls.env.ref('l10n_ke_etims_vscu.code_17_OU').id,
             'l10n_ke_packaging_quantity': 1,
         }])
 

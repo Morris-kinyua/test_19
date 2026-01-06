@@ -7,9 +7,17 @@
             <field name="arch" type="xml">
                 <xpath expr="//header" position="inside">
                     <field name="l10n_ke_oscu_invoice_number" invisible="1"/>
+                    <field name="l10n_ke_oscu_receipt_number" invisible="1"/>
+                    <field name="l10n_ke_has_kra_products" invisible="1"/>
                     <button
-                        name="action_l10n_ke_oscu_confirm_vendor_bill" type="object" string="Send to eTIMS"
-                        invisible="move_type not in ('in_invoice', 'in_refund') or l10n_ke_oscu_invoice_number or state != 'posted' or country_code != 'KE'"/>
+                        name="action_l10n_ke_oscu_send_invoice" type="object" string="Send to eTIMS"
+                        invisible="move_type not in ('out_invoice', 'out_refund') or l10n_ke_oscu_receipt_number or state != 'posted' or country_code != 'KE' or not l10n_ke_has_kra_products"
+                        class="btn-primary"
+                        help="Send this invoice to Kenya Revenue Authority via eTIMS"/>
+                    <button
+                        name="action_l10n_ke_oscu_confirm_vendor_bill" type="object" string="Confirm Purchase"
+                        invisible="move_type not in ('in_invoice', 'in_refund') or l10n_ke_oscu_invoice_number or state != 'posted' or country_code != 'KE'"
+                        help="Confirm this purchase with Kenya Revenue Authority via eTIMS"/>
                 </xpath>
                 <xpath expr="//header" position="after">
                     <div class="m-0" name="warnings">

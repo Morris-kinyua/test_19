@@ -24,7 +24,6 @@
         'l10n_ke', 
         'product_unspsc',
         'account_edi',
-        'account_move_send',
     ],
     'data': [
         'security/ir.model.access.csv',
@@ -35,7 +34,6 @@
         'views/account_tax_views.xml',
         'views/product_views.xml',
         'views/account_move_views.xml',
-        'views/account_move_send_views.xml',
         'views/report_invoice.xml',
         'views/res_company_views.xml',
         'views/res_config_settings_views.xml',
@@ -46,7 +44,6 @@
         'views/l10n_ke_etims_vscu_notice_views.xml',
         'views/menuitems.xml',
         'wizard/account_move_reversal_view.xml',
-        'wizard/account_move_send_views.xml',
     ],
     'demo': [
         'demo/demo_company.xml',
