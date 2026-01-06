@@ -10,4 +10,6 @@
 /customs/**/*.pyc
 /customs/**/*.pyo
 /customs/**/*.md
+/customs
+
 
