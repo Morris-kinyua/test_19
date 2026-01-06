@@ -1,0 +1,32 @@
+#version: '3.1'
+services:
+  db:
+    image: postgres:16
+    user: root
+    env_file: myenvfile.env
+    restart: always             # run as a service
+    volumes:
+        - ./postgresql:/var/lib/postgresql/data
+
+  odoo19:
+    image: odoo:19
+    user: root
+    depends_on:
+      - db
+    ports:
+      - "10019:8069"
+      - "20019:8072" # live chat
+    tty: true
+    command: --
+    env_file: myenvfile.env
+    volumes:
+      #- /etc/timezone:/etc/timezone:ro
+      #- /etc/localtime:/etc/localtime:ro
+      # - ./entrypoint.sh:/entrypoint.sh   # if you want to install additional Python packages, uncomment this line!
+      - ./custom_addons:/mnt/customs
+      - ./customs:/mnt/custom-addons
+      - ./enterprise:/mnt/enterprise
+      - ./config:/etc/odoo
+    restart: always             # run as a service
+
+
