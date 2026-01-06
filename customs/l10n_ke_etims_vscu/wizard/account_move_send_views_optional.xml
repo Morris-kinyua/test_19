@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Optional view - only loaded if account_move_send is available -->
+        <record id="account_move_send_wizard_form_inherit_l10n_ke_etims_vscu" model="ir.ui.view">
+            <field name="name">account.move.send.wizard.form.inherit.l10n.ke.etims.vscu</field>
+            <field name="model">account.move.send.wizard</field>
+            <field name="inherit_id" ref="account_move_send.account_move_send_wizard_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='options']" position="inside">
+                    <field name="l10n_ke_show_checkbox_oscu" invisible="1"/>
+                    <field name="l10n_ke_checkbox_oscu" 
+                           string="Send to eTIMS" 
+                           invisible="not l10n_ke_show_checkbox_oscu"
+                           help="Send the invoice to Kenya Revenue Authority via eTIMS"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

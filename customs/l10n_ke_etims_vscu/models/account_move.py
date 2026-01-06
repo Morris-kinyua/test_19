@@ -63,6 +63,11 @@ class AccountMove(models.Model):
         depends=['l10n_ke_oscu_attachment_file'],
     )
     l10n_ke_validation_message = fields.Json(compute='_compute_l10n_ke_validation_message')
+    l10n_ke_has_kra_products = fields.Boolean(
+        string="Has KRA Products",
+        compute='_compute_l10n_ke_has_kra_products',
+        help="True if invoice contains products with KRA item codes"
+    )
 
     # === Computes === #
 
@@ -139,6 +144,17 @@ class AccountMove(models.Model):
                 }
 
             move.l10n_ke_validation_message = messages
+
+    @api.depends('invoice_line_ids.product_id.l10n_ke_item_code')
+    def _compute_l10n_ke_has_kra_products(self):
+        """Check if invoice has products with KRA item codes"""
+        for move in self:
+            if not move.company_id.l10n_ke_oscu_is_active:
+                move.l10n_ke_has_kra_products = False
+                continue
+            
+            product_lines = move.invoice_line_ids.filtered(lambda line: line.display_type == 'product')
+            move.l10n_ke_has_kra_products = bool(product_lines.product_id.filtered('l10n_ke_item_code'))
 
     # === Sending to eTIMS: common helpers === #
 
@@ -711,6 +727,30 @@ class AccountMove(models.Model):
         domain = 'etims-sbx' if self.company_id.l10n_ke_server_mode == 'test' else 'etims'
         data = f'{self.company_id.vat}{self.company_id.l10n_ke_branch_code}{self.l10n_ke_oscu_signature}'
         return f'https://{domain}.kra.go.ke/common/link/etims/receipt/indexEtimsReceiptData?Data={data}'
+    
+    def action_l10n_ke_oscu_send_invoice(self):
+        """Action to send invoice to eTIMS directly from form view"""
+        self.ensure_one()
+        
+        if not self.is_sale_document(include_receipts=True):
+            raise UserError(_("Only customer invoices can be sent to eTIMS."))
+            
+        if self.l10n_ke_oscu_receipt_number:
+            raise UserError(_("This invoice has already been sent to eTIMS."))
+            
+        try:
+            self._l10n_ke_oscu_send_customer_invoice()
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'type': 'success',
+                    'message': _("Invoice successfully sent to KRA eTIMS"),
+                    'sticky': False,
+                }
+            }
+        except Exception as e:
+            raise UserError(_("Failed to send invoice to eTIMS: %s", str(e)))
     
     def _get_disbursement_remark(self):
         """Generate remark from product remarks"""

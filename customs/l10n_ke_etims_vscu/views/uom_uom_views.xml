@@ -6,7 +6,7 @@
             <field name="inherit_id" ref="uom.product_uom_form_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='name']" position="after">
-                    <field name="oscu_l10n_ke_quantity_unit_id" invisible="'KE' not in fiscal_country_codes"/>
+                    <field name="l10n_ke_quantity_unit_id" invisible="'KE' not in fiscal_country_codes"/>
                 </xpath>
             </field>
         </record>
@@ -16,7 +16,7 @@
             <field name="arch" type="xml">
                 <list editable="top" multi_edit="1">
                     <field name="display_name"/>
-                    <field name="oscu_l10n_ke_quantity_unit_id"/>
+                    <field name="l10n_ke_quantity_unit_id"/>
                 </list>
             </field>
         </record>

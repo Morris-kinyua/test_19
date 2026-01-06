@@ -4,4 +4,10 @@
 *.pyd
 .Python
 *.env
-/config/
+/config
+/enterprise
+/customs/**/__pycache__/
+/customs/**/*.pyc
+/customs/**/*.pyo
+/customs/**/*.md
+
