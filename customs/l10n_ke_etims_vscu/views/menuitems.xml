@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <data>
-        <menuitem id="vscu_menu" name="KRA eTIMS" groups="account.group_account_manager" parent="account.menu_finance_configuration">
-            <menuitem action="l10n_ke_etims_code_action" id="menuitem_l10n_ke_etims_vscu_codes_tree" name="KE VSCU Codes" sequence="1"/>
-            <menuitem action="l10n_ke_etims_notice_action" id="menuitem_l10n_ke_etims_vscu_notice_tree" name="KE VSCU Notices" sequence="2"/>
-        </menuitem>
-    </data>
-</odoo>
